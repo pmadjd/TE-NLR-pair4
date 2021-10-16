@@ -2,12 +2,29 @@
 -----------------------------------------------
 
 -- select name and daily fee of all campgrounds
+SELECT name, daily_fee 
+FROM campground;
 
 -- select name and daily fee of all campgrounds ordered by campground name
+SELECT name, daily_fee
+FROM campground
+ORDER BY name;
 
 -- select name, open from month, open to month, and daily fee of the campgrounds where daily fee is less than $100
+-- money needs to be compared to other money. Datatypes must match for comparison. 
+
+SELECT name, open_from_mm, open_to_mm, daily_fee
+FROM campground
+WHERE daily_fee < (
+                   SELECT '100':: money -- cast 100 as money datatype in subquery.
+                   )
+
 
 -- select name and daily fee of the campgrounds where the campground is open all year long
+
+SELECT name, daily_fee
+FROM campground
+WHERE open_from_mm LIKE '01' AND open_to_mm LIKE '12';
 
 
 -- PARK TABLE
